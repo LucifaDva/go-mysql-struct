@@ -14,7 +14,7 @@ func (m *DBModel) GetAllPersons(result interface{}) (err error) {
 		//fmt.Println("pool err :", err)
 		return
 	}
-	query := "select * from test"
+	query := "select * from person"
 	err = dbServer.QueryHelper(result, query)
 	return
 }

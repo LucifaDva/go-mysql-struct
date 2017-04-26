@@ -2,8 +2,8 @@
 	"center": {
 		"Host":"localhost",
 		"Port":3306,
-		"User":"test",
-		"Pass":"test",
+		"User":"root",
+		"Pass":"root",
 		"Charset":"utf8",
 		"Db":"test",
 		"MaxIdle":8
