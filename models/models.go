@@ -1,6 +1,6 @@
 package models
 
-import(
+import (
 	"github.com/LucifaDva/go-mysql-struct/db"
 )
 

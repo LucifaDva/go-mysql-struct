@@ -2,10 +2,10 @@ package models
 
 // struct to table
 type Person struct {
-	Id 		int64
-	Name 	string
-	Sex 	string
-	Age 	int
+	Id   int64
+	Name string
+	Sex  string
+	Age  int
 }
 
 func (m *DBModel) GetAllPersons(result interface{}) (err error) {
@@ -18,5 +18,3 @@ func (m *DBModel) GetAllPersons(result interface{}) (err error) {
 	err = dbServer.QueryHelper(result, query)
 	return
 }
-
-

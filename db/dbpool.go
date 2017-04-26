@@ -1,16 +1,16 @@
 package db
+
 import (
 	"encoding/json"
 	"errors"
-	"time"
 	"io/ioutil"
+	"time"
 )
 
 type DBPool struct {
-	Servers 	map[string]*DBServer
+	Servers map[string]*DBServer
 	//dbMap 		util.RingMap
 }
-
 
 func (dbpool *DBPool) loadConfigFile(configFile string) (err error) {
 	bytes, err := ioutil.ReadFile(configFile)
@@ -36,7 +36,7 @@ func (dbpool *DBPool) Init(configFile string, serverNames []string, maxIdle int,
 			_, err = dbpool.ConnectServer(serverName, maxIdle, maxDbConn, reConnect)
 		}
 	} else {
-		for _, serverName:= range serverNames {
+		for _, serverName := range serverNames {
 			_, err = dbpool.ConnectServer(serverName, maxIdle, maxDbConn, reConnect)
 		}
 	}
@@ -58,6 +58,7 @@ func (dbpool *DBPool) Close(serverName string) {
 		server.ConnectionPool.Close()
 	}
 }
+
 //???
 func (dbpool *DBPool) Get(serverName string) (server DBServer, err error) {
 	return dbpool.ConnectServer(serverName, server.MaxIdle, server.MaxDbConn, false)
@@ -69,7 +70,7 @@ func (dbpool *DBPool) ConnectServer(serverName string, maxIdle int, maxDbConn in
 		err = errors.New("No configure for this db")
 		return
 	}
-	
+
 	s.mu.Lock()
 	if time.Since(s.LastConnectTime) > time.Second {
 		if s.ConnectionPool != nil {
@@ -89,15 +90,4 @@ func (dbpool *DBPool) ConnectServer(serverName string, maxIdle int, maxDbConn in
 	}
 	s.mu.Unlock()
 	return
- }
-
-
-
-
-
-
-
-
-
-
-
+}
